@@ -1,0 +1,10 @@
+version: "3"
+services:
+  mysql-dds:
+    image: mysql:latest
+    container_name: mysql-dds
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: dds_tp_2023
+    ports:
+      - "3306:3306"

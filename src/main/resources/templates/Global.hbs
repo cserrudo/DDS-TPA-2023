@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Monitoreo de Servicios" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Monitoreo de Servicios</title>
+  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/tabla.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/css/popover.css">
+  <link rel="stylesheet" href="/css/_variables.css">
+  <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  {{#block "global-content"}}
+  {{/block}}
+
+  <div class="modal micromodal-slide" id="cerrar-incidente" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" modal-close>
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="cerrar-incidente-title">
+        <header class="modal__header">
+          <h2 class="modal__title" id="cerrar-incidente-title">
+            Cerrar Incidente
+          </h2>
+          <button class="modal__close" modal-close></button>
+        </header>
+        <form method="POST" id="cerrar-incidente-form">
+          <main class="modal__content" id="cerrar-incidente-content">
+            <div>
+              <p class="titulo">¿Desea cerrar el siguiente incidente?</p>
+            </div>
+            <div id="cerrar-incidente-data" class="modal__incidente-container">
+              <p class="entidad">Linea A - Primera Junta</p>
+              <p class="servicio">Escalera Mecánica</p>
+              <p class="observacion">Fuera de servicio</p>
+            </div>
+          </main>
+          <footer class="modal__footer">
+            <button class="primary-button" type="submit">CERRAR INCIDENTE</button>
+            <button class="secondary-button" modal-close>CANCELAR</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/micromodal/0.4.10/micromodal.min.js"></script>
+
+    <!-- Popover -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script type="text/javascript" src="/scripts/popover.js"></script>
+
+    <!-- File Upload -->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="/scripts/global.js"></script>
+</body>
+
+</html>

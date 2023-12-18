@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "puesto": 1,
+      "entidad": "Linea A",
+      "promedioTiempo": "3 días",
+      "cantIncidentes": 15,
+      "gradoImpacto": "Bajo"
+    },
+    {
+      "puesto": 2,
+      "entidad": "Linea H",
+      "promedioTiempo": "5 días",
+      "cantIncidentes": 24,
+      "gradoImpacto": "Medio"
+    },
+    {
+      "puesto": 3,
+      "entidad": "Jumbo",
+      "promedioTiempo": "9 días",
+      "cantIncidentes": 47,
+      "gradoImpacto": "Alto"
+    }
+  ]
+}

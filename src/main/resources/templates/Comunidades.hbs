@@ -1,0 +1,150 @@
+{{#partial "content"}}
+<div class="content-container">
+  <div class="content-container__header">
+    <div class="content-container__header__title">
+      <img src="/assets/community.svg" alt="Incidente" />
+      <h1>
+        Comunidades
+      </h1>
+    </div>
+    {{!-- <div class="content-container__header__button">
+      <button class="primary-button" modal-open="unirme-comunidad">
+        <img src="/assets/plus.svg" alt="Agregar" />Unirme a Comunidad
+      </button>
+    </div> --}}
+  </div>
+  <form method="GET" action="/comunidades">
+    <div class="search-container">
+      <div class="search-container__row">
+        <fieldset class="search-input">
+          <input type="text" name="nombre" class="search-input__input" placeholder="Buscar por nombre..."
+            aria-describedby="suffix" id="busqueda-nombre" autocomplete="off">
+          <span class="search-input__suffix" id="suffix">
+            <img src="/assets/search.svg" alt="Búsqueda" />
+          </span>
+        </fieldset>
+        <span class="dropdown">
+          <select class="dropdown__select" name="soyMiembro" id="soy-miembro-select">
+            <option selected disabled>Soy miembro</option>
+            <option value="true">Si</option>
+            <option value="false">No</option>
+          </select>
+        </span>
+        <div class="search-container__row__buttons">
+          <button class="primary-button" type="submit">
+            FILTRAR
+          </button>
+          <button class="secondary-button">
+            LIMPIAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="comunidades-container">
+    {{#each comunidades}}
+    <div class="comunidades-container__item">
+      <div class="titulo-container">
+        <div>
+          <h2>{{nombre}}</h2>
+          <span>{{miembrosCantidad}} miembros</span>
+        </div>
+        <div>
+          {{#if esMiembro}}
+          <div style="display: flex; gap: 0.5rem;">
+            {{#if esObservador}}
+            <form action="/comunidades/{{id}}/toggle-es-observador" method="POST">
+              <button class="primary-button" type="submit">Ser afectado</button>
+            </form>
+            {{else}}
+            <form action="/comunidades/{{id}}/toggle-es-observador" method="POST">
+              <button class="primary-button">Ser observador</button>
+            </form>
+            {{/if}}
+            <form action="/comunidades/{{id}}/baja-miembro" method="POST">
+              <button class="primary-button" type="submit">Darme de baja</button>
+            </form>
+          </div>
+          {{else}}
+          <form action="/comunidades/{{id}}/alta-miembro" method="POST">
+            <button class="primary-button">Unirme</button>
+          </form>
+          {{/if}}
+        </div>
+      </div>
+      <div class="incidentes-container">
+        {{#if incidentes.length}}
+        {{#limit incidentes 3}}
+        <div class="incidentes-container__item">
+          <div>
+            <img src="/assets/warning-xs.svg" alt="Alerta incidente" />
+          </div>
+          <div class="incidentes-container__item-descripcion">
+            <div>
+              <p class="entidad">{{entidad}} - {{establecimiento}}</p>
+              <p class="servicio">{{servicio}}</p>
+              <p class="observacion">{{observaciones}}</p>
+            </div>
+            <div>
+              <button class="button-icon incidente-acciones" modal-open="cerrar-incidente" id="{{id}}"
+                entidad="{{entidad}} - {{establecimiento}}" servicio="{{servicio}}" observacion="{{observaciones}}">
+                <img src="/assets/incident-xs.svg" alt="Cerrar incidente" />
+              </button>
+            </div>
+            </a>
+          </div>
+        </div>
+        {{/limit}}
+        <div class="incidentes-container__ver-mas">
+          {{#ifGreaterThan incidentes.length 3}}
+          <a href="/incidentes">ver <span>{{subtract incidentes.length 3}}</span>
+            incidente{{#ifGreaterThan incidentes.length 4}}s{{/ifGreaterThan}}
+            más</a>
+          {{/ifGreaterThan}}
+        </div>
+        {{else}}
+        <div class="incidentes-container__sin-incidentes">
+          <img src="/assets/success-xs.svg" alt="Sin incidentes" />
+          <p>Sin incidentes</p>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="paginacion-container">
+    <img src="/assets/chevron-left.svg" alt="Pagina anterior" />
+    <p>1</p>
+    <img src="/assets/chevron-right.svg" alt="Pagina anterior" />
+  </div>
+</div>
+{{!-- <div class="modal micromodal-slide" id="unirme-comunidad" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" modal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="unirme-comunidad-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="unirme-comunidad-title">
+          Unirme a Comunidad
+        </h2>
+        <button class="modal__close" modal-close></button>
+      </header>
+      <form method="POST" id="unirme-comunidad-form">
+        <main class="modal__content" id="unirme-comunidad-content">
+          <span class="dropdown">
+            <select class="dropdown__select" id="comunidad-select">
+              <option selected disabled>Comunidad</option>
+              {{#each comunidadesCombo}}
+              <option value="{{value}}">{{label}}</option>
+              {{/each}}
+            </select>
+          </span>
+        </main>
+        <footer class="modal__footer">
+          <button class="primary-button" onclick="handleUnirmeComunidad()">ACEPTAR</button>
+          <button class="secondary-button" modal-close>CANCELAR</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+</div> --}}
+{{/partial}}
+{{>Layout}}

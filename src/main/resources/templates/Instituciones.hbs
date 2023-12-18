@@ -1,0 +1,28 @@
+{{#partial "content"}}
+<div class="content-container">
+  <div class="content-container__header">
+    <div class="content-container__header__title">
+      <img src="/assets/import.svg" alt="Importar" />
+      <h1>
+        Importador de Instituciones
+      </h1>
+    </div>
+  </div>
+
+  <div class="file-upload-container">
+    <div>
+      <h3>Importar Entidades Prestadoras</h3>
+      <form action="/instituciones/importar-entidades-prestadoras" class="dropzone" id="entidades-prestadoras-dropzone">
+        <input type="file" name="file" />
+      </form>
+    </div>
+    <div>
+      <h3>Importar Organismos de Control</h3>
+      <form action="/instituciones/importar-organismos-de-control" class="dropzone" id="organismos-de-control-dropzone">
+        <input type="file" name="file" />
+      </form>
+    </div>
+  </div>
+</div>
+{{/partial}}
+{{>Layout}}

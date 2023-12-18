@@ -1,0 +1,96 @@
+{{#partial "content"}}
+<div class="content-container">
+  <h1>
+    Bienvenido, {{usuario.username}}!
+  </h1>
+  <form method="GET" action="/">
+    <div class="search-container">
+      <div class="search-container__row">
+        <fieldset class="search-input">
+          <input type="text" name="nombre" class="search-input__input" placeholder="Buscar por entidad..."
+            aria-describedby="suffix" id="busqueda-nombre" autocomplete="off">
+          <span class="search-input__suffix" id="suffix">
+            <img src="/assets/search.svg" alt="Búsqueda" />
+          </span>
+        </fieldset>
+        <span class="dropdown">
+          <select class="dropdown__select" name="localizacionId" id="localizacion-select">
+            <option selected disabled>Localizacion</option>
+            {{#each localizaciones}}
+            <option value="{{value}}">{{label}}</option>
+            {{/each}}
+          </select>
+        </span>
+        <div class="search-container__row__buttons">
+          <button class="primary-button" type="submit">
+            FILTRAR
+          </button>
+          <button class="secondary-button">
+            LIMPIAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="entidades-container">
+    {{#each entidades}}
+    <div class="entidades-container__item {{#if incidentes.length}}habilitado{{/if}}">
+      <div class="titulo-container">
+        <div>
+          <h2>{{nombre}}</h2>
+          <span>{{tipo}}</span>
+        </div>
+        <div>
+          {{#if incidentes.length}}
+          <img src="/assets/warning.svg" alt="Con incidentes" />
+          {{else}}
+          <img src="/assets/success.svg" alt="Sin incidentes" />
+          {{/if}}
+        </div>
+      </div>
+      <div class="incidentes-container">
+        {{#if incidentes.length}}
+        <div class="incidentes-container__item">
+          <div>
+            <img src="/assets/warning-xs.svg" alt="Alerta incidente" />
+          </div>
+          <div class="incidentes-container__item-descripcion">
+            <div>
+              <p class="entidad">{{incidentes.[0].establecimiento}}</p>
+              <p class="servicio">{{incidentes.[0].servicio}}</p>
+              <p class="observacion">{{incidentes.[0].observaciones}}</p>
+            </div>
+            <div>
+              <button class="button-icon incidente-acciones" modal-open="cerrar-incidente" id="{{id}}"
+                entidad="{{incidentes.[0].entidad}} - {{incidentes.[0].establecimiento}}"
+                servicio="{{incidentes.[0].servicio}}" observacion="{{incidentes.[0].observaciones}}">
+                <img src="/assets/incident-xs.svg" alt="Cerrar incidente" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="incidentes-container__ver-mas">
+          {{#ifGreaterThan incidentes.length 1}}
+          <a href="/incidentes?entidadId={{id}}">ver <span>{{subtract incidentes.length 1}}</span>
+            incidente{{#ifGreaterThan incidentes.length 2}}s{{/ifGreaterThan}}
+            más</a>
+          {{/ifGreaterThan}}
+        </div>
+        {{else}}
+        <div class="incidentes-container__sin-incidentes">
+          <img src="/assets/success-xs.svg" alt="Sin incidentes" />
+          <p>Sin incidentes</p>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="paginacion-container">
+    <img src="/assets/chevron-left.svg" alt="Pagina anterior" />
+    <p>1</p>
+    <img src="/assets/chevron-right.svg" alt="Pagina anterior" />
+  </div>
+</div>
+{{/partial}}
+{{>Layout}}

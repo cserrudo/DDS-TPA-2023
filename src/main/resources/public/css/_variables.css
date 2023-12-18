@@ -1,0 +1,26 @@
+* {
+  --primary: #007D99;
+  --primary-light: #80BECC;
+  --secondary: #008352;
+  --success: #00CF21;
+  --warning: #FF9900;
+  --danger: #FF0000;
+
+  --primary-text: #5a5959;
+  --primary-light-text: #7F807F;
+
+  --primary-background: #E5F2F5;
+  --primary-light-background: #F5FAFB;
+
+  --border-radius: .5rem;
+  --border-radius-lg: .6rem;
+  --border-radius-sm: .3rem;
+
+  --font-size: 1rem;
+  --font-size-lg: 2rem;
+  --font-size-md: 1.2rem;
+  --font-size-sm: 0.8rem;
+  --font-size-xsm: 0.7rem;
+
+  --box-shadow: 0px 5px 10px 1px rgb(0 125 153 / 7%);
+}

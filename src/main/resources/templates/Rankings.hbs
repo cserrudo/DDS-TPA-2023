@@ -1,0 +1,61 @@
+{{#partial "content"}}
+<div class="content-container">
+  <div class="content-container__header">
+    <div class="content-container__header__title">
+      <img src="/assets/ranking.svg" alt="Ranking" />
+      <h1>
+        Ranking de Incidentes
+      </h1>
+    </div>
+  </div>
+  <form method="GET" action="/rankings">
+    <div class="search-container">
+      <div class="search-container__row">
+        <span class="dropdown">
+          <select class="dropdown__select" name="criterio" id="criterio-select">
+            <option selected disabled>Criterio</option>
+            {{#each criterios}}
+            <option value="{{value}}">{{label}}</option>
+            {{/each}}
+          </select>
+        </span>
+        <span class="dropdown">
+          <select class="dropdown__select" name="cantidad" id="cantidad-select">
+            <option selected disabled>Cantidad</option>
+            <option value="5">TOP 5</option>
+            <option value="10">TOP 10</option>
+            <option value="15">TOP 15</option>
+          </select>
+        </span>
+        <div class="search-container__row__buttons">
+          <button class="primary-button" type="submit">
+            FILTRAR
+          </button>
+          <button class="secondary-button">
+            LIMPIAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="tabla-incidentes-container">
+    <table>
+      <thead>
+        <th>Puesto</th>
+        <th>Entidad</th>
+        <th>Promedio Cierre Incidentes</th>
+        <th>Cantidad Incidentes Por Semana</th>
+      </thead>
+      {{#each items}}
+      <tr>
+        <td>{{puesto}}</td>
+        <td>{{entidad}}</td>
+        <td>{{promedioTiempo}}</td>
+        <td>{{cantIncidentes}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+</div>
+{{/partial}}
+{{>Layout}}

@@ -1,0 +1,31 @@
+<div class="login">
+  <form method="POST" action="/login">
+    <div class="login-container">
+      <span class="login-containerlogo">
+        <img src="/assets/logo.svg" alt="Logo" />
+      </span>
+      <h2>Monitoreo de Servicios</h2>
+      <fieldset class="search-input">
+        <input type="text" class="search-input__input" name="email" placeholder="Usuario" aria-describedby="suffix"
+          id="email" required>
+        <span class="search-input__suffix" id="suffix">
+          <img src="/assets/email.svg" alt="Email" />
+        </span>
+      </fieldset>
+      <fieldset class="search-input">
+        <input type="password" class="search-input__input" name="password" placeholder="Contrase&ntilde;a"
+          aria-describedby="suffix" id="password" required>
+        <span class="search-input__suffix" id="suffix">
+          <img src="/assets/password.svg" alt="Password" />
+        </span>
+      </fieldset>
+      {{#if error}}
+      <p style="color: red;">Usuario o contrase&ntilde;a incorrectos</p>
+      {{/if}}
+      <button class="primary-button" type="submit">
+        INICIAR SESION
+      </button>
+    </div>
+  </form>
+</div>
+{{>Global}}

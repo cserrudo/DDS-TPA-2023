@@ -2,7 +2,7 @@
 
 # Contexto general: 
 
-#Problemática
+# Problemática
 Las personas con movilidad reducida (permanente o temporal) a menudo enfrentan desafíos significativos en términos de movilidad en una ciudad. Además debemos considerar a las personas que llevan niños pequeños que también pueden verse afectados.
 Algunos de los problemas comunes de movilidad incluyen:
 Accesibilidad: Muchas ciudades no están diseñadas para ser accesibles. Las aceras estrechas, los obstáculos en las calles y la falta de rampas para sillas de ruedas pueden dificultar que las personas con movilidad reducida se desplacen de manera segura y efectiva.
@@ -13,8 +13,9 @@ La situación mencionada en el párrafo anterior, y otras que seguramente el lec
 Nuestro Sistema
 A partir de la problemática identificada y presentada en la sección anterior, se presentan los requerimientos para el diseño y construcción de un Sistema de Monitoreo de Estado de Servicios.
 
-#Entregas:
-![image](https://github.com/cserrudo/DDS-TPA-2023/assets/102488578/904ab3c6-2e09-4058-af80-a821f9a6998e)
+# Entregas y contenido:
+
+![image](https://github.com/cserrudo/DDS-TPA-2023/assets/102488578/a0f0aed1-c5d9-422b-9d77-1838b34357a8)
 
 
 ## Caso de Uso

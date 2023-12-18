@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome</title>
+    <link th:href="@{/css/_variables.css}" rel="stylesheet" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/modal.css}" rel="stylesheet" />
+    <link th:href="@{/css/popover.css}" rel="stylesheet" />
+    <link th:href="@{/css/tabla.css}" rel="stylesheet" />
+
+</head>
+<body>
+<nav id="navbar" class="flex">
+    <div id="logo" class="flex">
+        <a href="/">
+            <img src="/assets/logo.svg" alt="Logo" />
+        </a>
+        <a href="/">
+            <p> Monitoreo de Estado de Servicios</p>
+        </a>
+    </div>
+    </div>
+    <div id="actions" class="flex">
+        <div id="user" class="flex">
+            <p>Martín Rodriguez</p>
+            <img src="/assets/user.svg" alt="Usuario" />
+        </div>
+        <button id="notificaciones" aria-describedby="tooltip" class="button-icon">
+            <img src="/assets/bell.svg" alt="Notificaciones" />
+        </button>
+        <div class="tooltip" role="tooltip" id="sugerencia-revision">
+            <div modal-open="sugerencia-incidente" onclick="ocultarNotificaciones()">
+                Sugerencia de revisión de incidente
+                <img src="/assets/open.svg" alt="Abrir" />
+            </div>
+            <div class="arrow" data-popper-arrow></div>
+        </div>
+        <img src="/assets/settings.svg" alt="Configuracion" />
+        <button class="button-icon incidente-acciones" onclick="logout()">
+            <img src=" /assets/logout.svg" alt="Cerrar sesión" />
+        </button>
+
+    </div>
+</nav>
+
+
+<aside id="sidebar">
+    <a th:href="@{/}">
+        <section class="sidebar-item filled-icon">
+            <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g th:style="'clip-path: url(#clip0_29_321);'">
+                    <path d="M14.0633 0.208057C13.9064 0.0737849 13.7066 0 13.5 0C13.2934 0 13.0936 0.0737849 12.9367 0.208057L0.5 10.8681V23.4001C0.5 24.0896 0.773928 24.7509 1.26152 25.2385C1.74912 25.7261 2.41044 26.0001 3.1 26.0001H10.0333C10.2632 26.0001 10.4836 25.9087 10.6462 25.7462C10.8087 25.5837 10.9 25.3632 10.9 25.1334V19.9334C10.9 19.2438 11.1739 18.5825 11.6615 18.0949C12.1491 17.6073 12.8104 17.3334 13.5 17.3334C14.1896 17.3334 14.8509 17.6073 15.3385 18.0949C15.8261 18.5825 16.1 19.2438 16.1 19.9334V25.1334C16.1 25.3632 16.1913 25.5837 16.3538 25.7462C16.5164 25.9087 16.7368 26.0001 16.9667 26.0001H23.9C24.5896 26.0001 25.2509 25.7261 25.7385 25.2385C26.2261 24.7509 26.5 24.0896 26.5 23.4001V10.8681L14.0633 0.208057Z" fill="#007D99" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_29_321">
+                        <rect width="26" height="26" fill="white" th:attr="transform=${'translate(0.5)'}" />
+                    </clipPath>
+                </defs>
+            </svg>
+            Inicio
+        </section>
+    </a>
+    <a th:href="@{/comunidades}">
+        <section class="sidebar-item filled-icon">
+            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.3125 11C11.4065 11 12.4557 10.5654 13.2293 9.79182C14.0029 9.01823 14.4375 7.96902 14.4375 6.875C14.4375 5.78098 14.0029 4.73177 13.2293 3.95818C12.4557 3.1846 11.4065 2.75 10.3125 2.75C9.21848 2.75 8.16927 3.1846 7.39568 3.95818C6.6221 4.73177 6.1875 5.78098 6.1875 6.875C6.1875 7.96902 6.6221 9.01823 7.39568 9.79182C8.16927 10.5654 9.21848 11 10.3125 11ZM2.75 14.806C2.75 13.4612 3.83762 12.375 5.181 12.375H11.7356C11.2522 13.2107 10.9984 14.1595 11 15.125C10.9991 15.9054 11.1647 16.6771 11.4857 17.3884C11.8068 18.0998 12.2759 18.7344 12.8617 19.25H11.3685C10.5935 19.25 9.83704 19.4865 9.19998 19.9277C8.56292 20.369 8.07562 20.994 7.80313 21.7195C5.74338 21.2162 4.466 20.0929 3.71387 18.8416C2.75 17.237 2.75 15.587 2.75 15.2996V14.806ZM22 15.125C22.0017 14.1595 21.7479 13.2107 21.2644 12.375H27.819C29.1637 12.375 30.25 13.4626 30.25 14.806V15.301C30.25 15.5856 30.25 17.237 29.2875 18.8416C28.534 20.0929 27.2566 21.2162 25.1969 21.7195C24.9245 20.9939 24.4373 20.3687 23.8002 19.9275C23.1631 19.4862 22.4065 19.2498 21.6315 19.25H20.1383C20.7241 18.7344 21.1932 18.0998 21.5143 17.3884C21.8353 16.6771 22.0009 15.9054 22 15.125ZM26.8125 6.875C26.8125 7.96902 26.3779 9.01823 25.6043 9.79182C24.8307 10.5654 23.7815 11 22.6875 11C21.5935 11 20.5443 10.5654 19.7707 9.79182C18.9971 9.01823 18.5625 7.96902 18.5625 6.875C18.5625 5.78098 18.9971 4.73177 19.7707 3.95818C20.5443 3.1846 21.5935 2.75 22.6875 2.75C23.7815 2.75 24.8307 3.1846 25.6043 3.95818C26.3779 4.73177 26.8125 5.78098 26.8125 6.875ZM8.9375 23.056C8.9375 21.7113 10.0251 20.625 11.3685 20.625H21.6315C22.9749 20.625 24.0625 21.7126 24.0625 23.056V23.551C24.0625 23.8356 24.0625 25.487 23.1 27.0916C22.0784 28.7884 20.0929 30.25 16.5 30.25C12.9071 30.25 10.9202 28.7884 9.9 27.0916C8.9375 25.487 8.9375 23.837 8.9375 23.5496V23.056ZM16.5 19.25C17.0417 19.25 17.5781 19.1433 18.0786 18.936C18.579 18.7287 19.0338 18.4249 19.4168 18.0418C19.7999 17.6588 20.1037 17.204 20.311 16.7036C20.5183 16.2031 20.625 15.6667 20.625 15.125C20.625 14.5833 20.5183 14.0469 20.311 13.5464C20.1037 13.046 19.7999 12.5912 19.4168 12.2082C19.0338 11.8251 18.579 11.5213 18.0786 11.314C17.5781 11.1067 17.0417 11 16.5 11C15.406 11 14.3568 11.4346 13.5832 12.2082C12.8096 12.9818 12.375 14.031 12.375 15.125C12.375 16.219 12.8096 17.2682 13.5832 18.0418C14.3568 18.8154 15.406 19.25 16.5 19.25Z"
+                        fill="#007D99" /></svg>
+            Comunidades
+        </section>
+    </a>
+    <a th:href="@{/incidentes}">
+        <section class="sidebar-item filled-icon">
+            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path th:attr="d=${'M31.4875 29.15L25.85 23.5125C26.4 22.1375 26.125 20.35 24.8875 19.25C23.65 18.0125 21.8625 17.7375 20.35 18.425L22.9625 21.0375L21.0375 22.9625L18.2875 20.2125C17.6 21.725 17.875 23.5125 19.1125 24.8875C20.35 26.125 22 26.4 23.375 25.85L29.0125 31.4875C29.2875 31.7625 29.7 31.7625 29.8375 31.4875L31.2125 30.1125C31.625 29.7 31.625 29.2875 31.4875 29.15ZM17.875 27.5H2.75V24.75C2.75 21.725 7.7 19.25 13.75 19.25C14.4375 19.25 15.125 19.25 15.675 19.3875C15.2625 20.2125 15.125 21.0375 15.125 22C15.125 24.2 16.225 26.2625 17.875 27.5ZM13.75 5.5C10.725 5.5 8.25 7.975 8.25 11C8.25 14.025 10.725 16.5 13.75 16.5C16.775 16.5 19.25 14.025 19.25 11C19.25 7.975 16.775 5.5 13.75 5.5Z'}" fill="#007D99" />
+            </svg>
+            Incidentes
+        </section>
+    </a>
+    <a th:href="@{/rankings}">
+        <section class="sidebar-item stroke-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path th:attr="d='M3 3V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H21'"
+                      stroke="#007D99" stroke-width="2" stroke-miterlimit="5.759" stroke-linecap="round" stroke-linejoin="round" />
+                <path th:attr="d='M7 14L11 10L15 14L21 8'" stroke="#007D99" stroke-width="2" stroke-miterlimit="5.759"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                <path th:attr="d='M18 8H21V11'" stroke="#007D99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Rankings
+        </section>
+    </a>
+    <a th:href="@{/instituciones}">
+        <section class="sidebar-item filled-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path th:attr="d='M21 14C20.7348 14 20.4804 14.1054 20.2929 14.2929C20.1054 14.4804 20 14.7348 20 15V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H5C4.73478 20 4.48043 19.8946 4.29289 19.7071C4.10536 19.5196 4 19.2652 4 19V15C4 14.7348 3.89464 14.4804 3.70711 14.2929C3.51957 14.1054 3.26522 14 3 14C2.73478 14 2.48043 14.1054 2.29289 14.2929C2.10536 14.4804 2 14.7348 2 15V19C2 19.7956 2.31607 20.5587 2.87868 21.1213C3.44129 21.6839 4.20435 22 5 22H19C19.7956 22 20.5587 21.6839 21.1213 21.1213C21.6839 20.5587 22 19.7956 22 19V15C22 14.7348 21.8946 14.4804 21.7071 14.2929C21.5196 14.1054 21.2652 14 21 14ZM11.29 15.71C11.3851 15.801 11.4972 15.8724 11.62 15.92C11.7397 15.9729 11.8691 16.0002 12 16.0002C12.1309 16.0002 12.2603 15.9729 12.38 15.92C12.5028 15.8724 12.6149 15.801 12.71 15.71L16.71 11.71C16.8983 11.5217 17.0041 11.2663 17.0041 11C17.0041 10.7337 16.8983 10.4783 16.71 10.29C16.5217 10.1017 16.2663 9.99591 16 9.99591C15.7337 9.99591 15.4783 10.1017 15.29 10.29L13 12.59V3C13 2.73478 12.8946 2.48043 12.7071 2.29289C12.5196 2.10536 12.2652 2 12 2C11.7348 2 11.4804 2.10536 11.2929 2.29289C11.1054 2.48043 11 2.73478 11 3V12.59L8.71 10.29C8.61676 10.1968 8.50607 10.1228 8.38425 10.0723C8.26243 10.0219 8.13186 9.99591 8 9.99591C7.86814 9.99591 7.73757 10.0219 7.61575 10.0723C7.49393 10.1228 7.38324 10.1968 7.29 10.29C7.19676 10.3832 7.1228 10.4939 7.07234 10.6158C7.02188 10.7376 6.99591 10.8681 6.99591 11C6.99591 11.1319 7.02188 11.2624 7.07234 11.3842C7.1228 11.5061 7.19676 11.6168 7.29 11.71L11.29 15.71'"
+                      fill="#007D99" />
+            </svg>
+            Importador
+        </section>
+    </a>
+</aside>
+<main class="main-content">
+<div class="content-container">
+    <div class="content-container__header">
+        <div class="content-container__header__title">
+            <img src="/assets/incident.svg" alt="Incidente" />
+            <h1>
+                Incidentes
+            </h1>
+        </div>
+        <div class="content-container__header__button">
+            <button class="primary-button" th:modalopen="reportar-incidente">
+                <img src="/assets/plus.svg" alt="Agregar" />Reportar Incidente
+            </button>
+        </div>
+    </div>
+    <form method="GET" action="/incidentes">
+        <div class="search-container">
+            <div class="search-container__row">
+                <fieldset class="search-input">
+                    <input type="text" name="nombre" class="search-input__input" placeholder="Buscar por observaciones..."
+                           aria-describedby="suffix" id="busqueda-nombre" autocomplete="off">
+                    <span class="search-input__suffix" id="suffix">
+                    <img th:src="@{/assets/search.svg}" alt="Búsqueda" />
+                </span>
+                </fieldset>
+                <span class="dropdown">
+                <select class="dropdown__select" name="estado" id="estado-select">
+                    <option selected disabled>Estado</option>
+                    <option value="abierto">Abierto</option>
+                    <option value="cerrado">Cerrado</option>
+                </select>
+            </span>
+                <span class="dropdown">
+                <select class="dropdown__select" name="comunidadId" id="comunidad-select">
+                    <option selected disabled>Comunidad</option>
+                    <option th:each="comunidad : ${comunidades}" th:value="${comunidad.value}" th:text="${comunidad.label}"></option>
+                </select>
+            </span>
+            </div>
+            <div class="search-container__row">
+            <span class="dropdown">
+                <select class="dropdown__select" name="localizacionId" id="localizacion-select">
+                    <option selected disabled>Localizacion</option>
+                    <option th:each="localizacion : ${localizaciones}" th:value="${localizacion.value}" th:text="${localizacion.label}"></option>
+                </select>
+            </span>
+                <span class="dropdown">
+                <select class="dropdown__select" name="entidadId" id="entidad-select">
+                    <option selected disabled>Entidad</option>
+                    <option th:each="entidad : ${entidades}" th:value="${entidad.value}" th:text="${entidad.label}"></option>
+                </select>
+            </span>
+                <span class="dropdown">
+                <select class="dropdown__select" name="establecimientoId" id="establecimiento-select">
+                    <option selected disabled>Establecimiento</option>
+                    <option th:each="establecimiento : ${establecimientos}" th:value="${establecimiento.value}" th:text="${establecimiento.label}"></option>
+                </select>
+            </span>
+            </div>
+            <div class="search-container__row">
+            <span class="dropdown">
+                <select class="dropdown__select" name="miembroAltaId" id="miembro-alta-select">
+                    <option selected disabled>Miembro alta</option>
+                    <option th:each="miembro : ${miembros}" th:value="${miembro.value}" th:text="${miembro.label}"></option>
+                </select>
+            </span>
+                <span class="dropdown">
+                <select class="dropdown__select" name="miembroBajaId" id="miembro-baja-select">
+                    <option selected disabled>Miembro baja</option>
+                    <option th:each="miembro : ${miembros}" th:value="${miembro.value}" th:text="${miembro.label}"></option>
+                </select>
+            </span>
+                <div class="search-container__row__buttons">
+                    <button class="primary-button" type="submit">
+                        FILTRAR
+                    </button>
+                    <button class="secondary-button">
+                        LIMPIAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="tabla-incidentes-container">
+        <table>
+            <thead>
+            <th>Servicio</th>
+            <th>Observaciones</th>
+            <th>Comunidad</th>
+            <th>Establecimiento</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+            </thead>
+            <tr th:each="incidente : ${incidentes}">
+                <td th:text="${incidente.servicio}"></td>
+                <td th:text="${incidente.observaciones}"></td>
+                <td th:text="${incidente.comunidad}"></td>
+                <td th:text="${incidente.entidad} + ' - ' + ${incidente.establecimiento}"></td>
+                <td>
+                    <div class="estado-container" th:classappend="${incidente.abierto} ? 'abierto' : 'cerrado'">
+                        <img th:src="${incidente.abierto} ? '/assets/warning-xs.svg' : '/assets/success-xs.svg'"
+                             th:alt="${incidente.abierto} ? 'Con incidentes' : 'Sin incidentes'" />
+                        <span th:text="${incidente.abierto} ? 'Abierto' : 'Cerrado'"></span>
+                    </div>
+                </td>
+                <td>
+                    <button th:if="${incidente.abierto}" class="button-icon incidente-acciones" modal-open="cerrar-incidente"
+                            th:id="${incidente.id}" th:attr="entidad=${incidente.entidad + ' - ' + incidente.establecimiento},
+                        servicio=${incidente.servicio}, observacion=${incidente.observaciones}">
+                        <img src="/assets/incident-xs.svg" alt="Cerrar incidente" />
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="paginacion-container">
+        <img src="/assets/chevron-left.svg" alt="Pagina anterior" />
+        <p>1</p>
+        <img src="/assets/chevron-right.svg" alt="Pagina anterior" />
+    </div>
+</div>
+    <div class="modal micromodal-slide" th:id="reportar-incidente" th:aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" th:modalclose>
+            <div class="modal__container" role="dialog" th:aria-modal="true" th:aria-labelledby="reportar-incidente-title">
+                <header class="modal__header">
+                    <h2 class="modal__title" th:id="reportar-incidente-title">
+                        Reportar Incidente
+                    </h2>
+                    <button class="modal__close" th:modalclose></button>
+                </header>
+                <form method="POST" th:action="@{/incidentes/reportar}">
+                    <main class="modal__content" th:id="reportar-incidente-content">
+                    <span class="dropdown">
+                        <select class="dropdown__select" name="entidadId" id="entidad-select">
+                            <option selected disabled>Entidad</option>
+                            <option th:each="entidad : ${entidades}" th:value="${entidad.value}" th:text="${entidad.label}"></option>
+                        </select>
+                    </span>
+                        <span class="dropdown">
+                        <select class="dropdown__select" name="establecimientoId" id="establecimiento-select">
+                            <option selected disabled>Establecimiento</option>
+                            <option th:each="establecimiento : ${establecimientos}" th:value="${establecimiento.value}" th:text="${establecimiento.label}"></option>
+                        </select>
+                    </span>
+                        <span class="dropdown">
+                        <select class="dropdown__select" name="servicioId" id="servicio-incidente-select">
+                            <option selected disabled>Servicio</option>
+                            <option th:each="servicio : ${servicios}" th:value="${servicio.value}" th:text="${servicio.label}"></option>
+                        </select>
+                    </span>
+                        <textarea name="observaciones" id="observaciones-incidente" placeholder="Observaciones"></textarea>
+                    </main>
+                    <footer class="modal__footer">
+                        <button class="primary-button" type="submit">ACEPTAR</button>
+                        <button class="secondary-button" th:modalclose>CANCELAR</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal micromodal-slide" id="cerrar-incidente" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" modal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="cerrar-incidente-title">
+            <header class="modal__header">
+                <h2 class="modal__title" id="cerrar-incidente-title">
+                    Cerrar Incidente
+                </h2>
+                <button class="modal__close" modal-close></button>
+            </header>
+            <form method="POST" id="cerrar-incidente-form">
+                <main class="modal__content" id="cerrar-incidente-content">
+                    <div>
+                        <p class="titulo">¿Desea cerrar el siguiente incidente?</p>
+                    </div>
+                    <div id="cerrar-incidente-data" class="modal__incidente-container">
+                        <p class="entidad">Linea A - Primera Junta</p>
+                        <p class="servicio">Escalera Mecánica</p>
+                        <p class="observacion">Fuera de servicio</p>
+                    </div>
+                </main>
+                <footer class="modal__footer">
+                    <button class="primary-button">CERRAR INCIDENTE</button>
+                    <button class="secondary-button" modal-close>CANCELAR</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+</div>
+</main>
+
+<div class="modal micromodal-slide" id="sugerencia-incidente" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" modal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="sugerencia-incidente-title">
+            <header class="modal__header">
+                <h2 class="modal__title" id="sugerencia-incidente-title">
+                    Sugerencia de revisión de incidente
+                </h2>
+                <button class="modal__close" modal-close></button>
+            </header>
+            <main class="modal__content" id="sugerencia-incidente-content">
+                <div>
+                    <p class="titulo">¿El siguiente incidente fue resuelto?</p>
+                </div>
+                <div class="modal__incidente-container">
+                    <p class="entidad">Linea A - Primera Junta</p>
+                    <p class="servicio">Escalera Mecánica</p>
+                    <p class="observacion">Fuera de servicio</p>
+                </div>
+            </main>
+            <footer class="modal__footer">
+                <button class="primary-button">FUE RESUELTO</button>
+                <button class="secondary-button" modal-close>NO FUE RESUELTO</button>
+            </footer>
+        </div>
+    </div>
+</div>
+<!-- Modals -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/micromodal/0.4.10/micromodal.min.js"></script>
+
+<!-- Popover -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script type="text/javascript" src="/scripts/popover.js"></script>
+
+<!-- File Upload -->
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
+<!-- Scripts -->
+<script type="text/javascript" src="/scripts/global.js"></script>
+</body>
+</html>
